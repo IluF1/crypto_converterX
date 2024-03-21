@@ -18,7 +18,7 @@ async def start_handler(message: Message):
 @router.message(F.text == 'Показать курс 📈')
 async def course_handler(message: Message):
     if cryptocurrencies:
-        await message.reply('Выберите интерисующую криптовалюту:',
+        await message.reply('Выберите интересующую криптовалюту:',
             reply_markup = await kb.inline_crypto()
         )
     else:
