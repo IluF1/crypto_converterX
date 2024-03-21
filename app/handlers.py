@@ -1,8 +1,9 @@
 from aiogram import Router, F
-from aiogram.types import Message
+from aiogram.types import Message,CallbackQuery, callback_query
 from aiogram.filters import Command, CommandStart
 import app.keyboards as kb
 from app.keyboards import cryptocurrencies
+import datetime
 
 
 router = Router()
@@ -28,3 +29,9 @@ async def course_handler(message: Message):
         )
     else:
         await message.reply("Сервис пока что недоступен")
+
+nowdate = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+@router.callback_query(lambda query: query.data in cryptocurrencies)
+async def cryptocurrency(callback: CallbackQuery):
+    selected_cryptocurrency = callback.data
+    await callback.message.reply(f"Курс { selected_cryptocurrency } на { nowdate }")

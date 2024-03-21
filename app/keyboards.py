@@ -17,5 +17,5 @@ cryptocurrencies = cryptocurrencies_request()
 async def inline_crypto():
     keyboard = InlineKeyboardBuilder()
     for cryptocurrency in cryptocurrencies:
-        keyboard.add(InlineKeyboardButton(text = cryptocurrency, callback_data = cryptocurrency))
+        keyboard.add(InlineKeyboardButton(text = cryptocurrency, callback_data = cryptocurrency, ))
     return keyboard.adjust(2).as_markup()
